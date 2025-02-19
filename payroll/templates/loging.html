@@ -1,0 +1,92 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Login{% endblock %}</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; 
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            color: #ff6600; 
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        form {
+            background-color: #fff; 
+            max-width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333; 
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 24px); 
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #ff6600; 
+            color: #fff; 
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #ff8533; 
+        }
+
+        .icon {
+            position: relative;
+            top: 4px;
+            margin-right: 10px;
+            color: #ff6600;
+        }
+    </style>
+</head>
+<body>
+
+    <h2><i class="icon fas fa-sign-in-alt"></i>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="id_username"><i class="icon fas fa-user"></i>Username:</label>
+            <input type="text" name="username" id="id_username">
+        </div>
+        <div>
+            <label for="id_password"><i class="icon fas fa-lock"></i>Password:</label>
+            <input type="password" name="password" id="id_password">
+        </div>
+        <button type="submit"><i class="icon fas fa-sign-in-alt"></i>Login</button>
+    </form>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

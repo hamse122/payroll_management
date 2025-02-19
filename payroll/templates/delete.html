@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Payroll</title>
+</head>
+<body>
+    <h1>Delete Payroll</h1>
+    <p>Are you sure you want to delete "{{ payroll.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirm Delete</button>
+    </form>
+    <p><a href="{% url 'recycle_bin' %}">Go to Recycle Bin</a></p>
+</body>
+</html>

@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %}Registered Payrolls{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Payrolls</title>
+    <!-- Font Awesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="icons" href="ali.jpg">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .table .icon {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+                <h1 class="text-center">Employee list <i class="fas fa-list-alt icon"></i></h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID <i class="fas fa-user"></i></th>
+                            <th scope="col">Payroll Name <i class="fas fa-file-signature icon"></i></th>
+                            <th scope="col">Department <i class="fas fa-building icon"></i></th>
+                            <th scope="col">Phone <i class="fas fa-phone icon"></i></th>
+                            <th scope="col">Salary <i class="fas fa-money-bill icon"></i></th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for payroll in payrolls %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ payroll.name }}</td>
+                            <td>{{ payroll.department }}</td>
+                            <td>{{ payroll.phone }}</td>
+                            <td>{{ payroll.salary }}</td>
+                            <td>
+                                <form action="{% url 'delete_payroll' payroll.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</button>
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updateModal{{ payroll.id }}"><i class="fas fa-edit"></i> Update</button>
+                            </form>
+                            </td>
+                        </tr>
+                        <!-- Update Modal -->
+                        <div class="modal fade" id="updateModal{{ payroll.id }}" tabindex="-1" aria-labelledby="updateModalLabel{{ payroll.id }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="updateModalLabel{{ payroll.id }}">Update Payroll</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{% url 'update_payroll' payroll.id %}" method="post">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <label for="name">Name:</label>
+                                                <input type="text" class="form-control" id="name" name="name" value="{{ payroll.name }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="department">Department:</label>
+                                                <input type="text" class="form-control" id="department" name="department" value="{{ payroll.department }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="phone">Phone:</label>
+                                                <input type="text" class="form-control" id="phone" name="phone" value="{{ payroll.phone }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="salary">Salary:</label>
+                                                <input type="text" class="form-control" id="salary" name="salary" value="{{ payroll.salary }}">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Update</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payroll Management</title>
+    <!-- Font Awesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+           
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2px;
+        }
+        .left-section {
+            flex: 2;
+        }
+        .right-section {
+            flex: 2;
+            text-align: center;
+        }
+        .welcome-message {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+        .features {
+            list-style-type: none;
+            padding: 0;
+        }
+        .features li {
+            margin-bottom: 10px;
+        }
+        .contact-btn {
+            background-color: #d27707;
+            color: #fff;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+        }
+        .contact-btn:hover {
+            background-color: #d27707;
+        }
+        .contact-btn i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <h1>Welcome to Payroll Management</h1>
+            <p class="welcome-message">Streamline your payroll process with us!</p>
+            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint ipsam possimus facere? Sed sint fuga vel quis quia? Pariatur alias iste 
+                omnis incidunt provident itaque qui, corporis laboriosam atque eos.</h3>
+            <ul class="features">
+            </ul><br>
+            <a href="/contact/" class="contact-btn btn-warning"><i class="fas fa-envelope"></i>Contact Us</a>
+        </div>
+        <div class="right-section">
+            <img src="{% static 'ali.jpg' %}" alt="Payroll Management Image" width="500">
+            <br><br>
+           
+        </div>
+    </div>
+</body>
+</html>
+
+{% endblock %}
